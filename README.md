@@ -5,6 +5,7 @@
 ## 两个关键点
 
 1, draggable 属性
+
 2, drag 事件
 
 ### draggable 属性
@@ -16,7 +17,9 @@ img 标签默认是支持拖拽的, 当时其他 HTML 标签, 想要其拖动的
 drag 相关的事件有: ondragstart、ondragend、ondragenter、ondragover、ondragleave、ondrop
 
 一般情况下, 在实际使用时, 根据需求会有以下使用情况:
+
 1, 被拖拽元素实现: ondragstart、ondragend
+
 2, 被放置元素实现: ondragenter、ondragover、ondragleave、ondrop
 
 注意: ondragover 的默认事件 Reset the current drag operation to "none". 所以想让一个元素可放置，需要重写 ondragover, 使用 preventDefault() 阻止其默认行为.
@@ -51,5 +54,5 @@ element.ondragover = event => {
 [源码地址传送门](https://github.com/CoderLeoD/react-drag)
 
 # 项目截图
-![项目截图](src/images/demo.png)
+![项目截图](https://raw.githubusercontent.com/CoderLeoD/react-drag/main/src/images/demo.png)
 
