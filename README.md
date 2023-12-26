@@ -48,8 +48,8 @@ element.ondragover = event => {
 **注意: 当前 demo 只是一个本地的演示, 目的在于说明 drag 行为的实现需要配置的属性 以及 可能需要实现的事件, 在实际工作中可能还需要 ajax 请求的参与, 这里不再赘述.**
 
 # 项目源码地址
-[源码地址传送门](src/images/demo.png)
+[源码地址传送门](https://github.com/CoderLeoD/react-drag)
 
 # 项目截图
-![项目截图]()
+![项目截图](src/images/demo.png)
 
