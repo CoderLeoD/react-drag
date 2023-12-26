@@ -1,0 +1,21 @@
+.todo_list {
+  border: 1px solid #d2d2d2;
+  height: 100%;
+  background: #eee;
+  header {
+    height: 40px;
+    line-height: 40px;
+    background: #76A3F0;
+    color: #fff;
+    text-align: center;
+  }
+  main {
+    height: 500px;
+    overflow: auto;
+    padding: 0 16px;
+    &.active {
+      background: #00A3F0;
+      opacity: 0.1;
+    }
+  }
+}

@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# 基于 React 的拖拽效果 Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+一个基于 React 的拖拽功能实现的 Demo.
 
-## Available Scripts
+## 两个关键点
 
-In the project directory, you can run:
+1, draggable 属性
+2, drag 事件
 
-### `yarn start`
+### draggable 属性
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+img 标签默认是支持拖拽的, 当时其他 HTML 标签, 想要其拖动的话, 需要为其添加 draggable="true" 属性
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### drag 事件
 
-### `yarn test`
+drag 相关的事件有: ondragstart、ondragend、ondragenter、ondragover、ondragleave、ondrop
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+一般情况下, 在实际使用时, 根据需求会有以下使用情况:
+1, 被拖拽元素实现: ondragstart、ondragend
+2, 被放置元素实现: ondragenter、ondragover、ondragleave、ondrop
 
-### `yarn build`
+注意: ondragover 的默认事件 Reset the current drag operation to "none". 所以想让一个元素可放置，需要重写 ondragover, 使用 preventDefault() 阻止其默认行为.
+```JavaScript
+element.ondragover = event => { 
+    event.preventDefault();
+    // ...
+}
+```
+一般会在 ondrop 事件中确定最终行为的实现.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# 项目简介
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+项目分为 todo-panel, todo-list, todo-item 三个组件
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1, todo-panel 控制整个 demo 效果的布局和总逻辑的实施, 所有响应式的 state 都在该组件中实现.
+总控室.
+所有需要动态渲染的 state 都在当前组件中配置
 
-### `yarn eject`
+2, todo-list 列表组件, 用于展示某种形态的列表
+桥梁.
+子组件(todo-item)的 drag 行为需要通过 todo-list 组件传递给父组件(todo-panel);
+父组件(todo-panel)的 state 变化, 也会引起 todo-list 的动态渲染.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3, todo-item 本 demo 中最小的行动单元, 具体的某一个 todo行为 的 封装组件
+也是 被拖拽 的元素(组件), 因此, 在其内部实现了 ondragstart 和 ondragend 两个方法
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**注意: 当前 demo 只是一个本地的演示, 目的在于说明 drag 行为的实现需要配置的属性 以及 可能需要实现的事件, 在实际工作中可能还需要 ajax 请求的参与, 这里不再赘述.**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# 项目源码地址
+[源码地址传送门](src/images/demo.png)
 
-## Learn More
+# 项目截图
+![项目截图]()
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
